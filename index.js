@@ -7,6 +7,8 @@ const {
   excludeSpecial,
   getDomain,
 } = require("./utils/utils");
+// 爬取多少页
+const pageTotal = 30;
 
 /************
  * 爬情侣头像用的脚本
@@ -20,7 +22,7 @@ getList();
  * @param waitTime 爬取一个页面的间隔时间，默认 2s
  */
 async function getList(waitTime = 2000) {
-  for (let i = 2; i < 130; i++) {
+  for (let i = 2; i < pageTotal; i++) {
     // 爬慢点
     await sleep(waitTime * i);
     getPage(i);
