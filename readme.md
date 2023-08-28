@@ -9,7 +9,7 @@
 npm i
 ```
 
-## 获取情头运行
+### 获取情头运行
 
 ```sh
 node index.js
@@ -17,7 +17,7 @@ node index.js
 
 程序运行会在根目录生成`coupleImg`文件夹，图片会保存在这里
 
-## 获取套图运行
+### 获取套图运行
 
 ```sh
 node taotu.js
