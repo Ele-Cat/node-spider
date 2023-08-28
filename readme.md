@@ -1,6 +1,6 @@
 # node-spider
 
-- 使用 nodejs + axios + cheerio 搭建的爬取情侣头像脚本
+- 使用 nodejs + axios + cheerio 搭建的爬取网页情侣头像、接口套图脚本
 - [情侣头像](https://www.woyaogexing.com)
 - [美女套图](http://jiuli.xiaoapi.cn/ipa.php?id=mnyjs)
 
