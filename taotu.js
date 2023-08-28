@@ -28,7 +28,7 @@ async function getPage() {
   const {
     data: { title: mainTitle, img: imgUrls },
   } = await axios.get("http://jiuli.xiaoapi.cn/i/img/mnyjs.php");
-  let realTitle = mainTitle.split("-")[0];
+  let realTitle = mainTitle.split("-")[0].replace(/\s/g, '');
   isExitDir("taotuImg");
   fs.mkdir("./taotuImg/" + realTitle, () => {
     console.log("成功创建目录：" + "./taotuImg/" + realTitle);
