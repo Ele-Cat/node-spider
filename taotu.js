@@ -25,9 +25,11 @@ async function getList(waitTime = 2000) {
 
 // 获取页面内容
 async function getPage() {
+  // 从接口拿回来数据，图片在imgUrls里
   const {
     data: { title: mainTitle, img: imgUrls },
   } = await axios.get("http://jiuli.xiaoapi.cn/i/img/mnyjs.php");
+  // 获取清爽的title
   let realTitle = mainTitle.split("-")[0].replace(/\s/g, '');
   isExitDir("taotuImg");
   fs.mkdir("./taotuImg/" + realTitle, () => {
@@ -38,15 +40,16 @@ async function getPage() {
 
 // 用来获取图片的链接
 async function getImg(imgUrls, mainTitle) {
-  imgUrls.map(async (item) => {
-    const title = item.substring(item.lastIndexOf("/") + 1);
-    await download(item, mainTitle, title);
+  imgUrls.map(async (imgUrl) => {
+    // 单张图片标题
+    const title = imgUrl.substring(imgUrl.lastIndexOf("/") + 1);
+    await download(imgUrl, mainTitle, title);
   });
 }
 
 // 拿到链接之后通过文件流下载
-async function download(pageImgUrl, mainTitle, title) {
-  const res = await axios.get(pageImgUrl, { responseType: "stream" });
+async function download(imgUrl, mainTitle, title) {
+  const res = await axios.get(imgUrl, { responseType: "stream" });
   const ws = fs.createWriteStream(`./taotuImg/${mainTitle}/${title}.jpg`);
   res.data.pipe(ws);
   console.log("正在下载" + title);
