@@ -13,9 +13,9 @@ getList();
 
 /**
  * 获取不同页面的数据，默认获取30页
- * @param waitTime 爬取一个页面的间隔时间，默认 2s
+ * @param waitTime 爬取一个页面的间隔时间，默认 10s
  */
-async function getList(waitTime = 6000) {
+async function getList(waitTime = 10000) {
   for (let i = 1; i < pageTotal; i++) {
     // 爬慢点
     await sleep(waitTime);
