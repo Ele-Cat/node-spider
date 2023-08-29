@@ -1,6 +1,6 @@
 const axios = require("axios");
 const fs = require("fs");
-const { isExitDir, sleep } = require("./utils/utils");
+const { isExitDir, sleep } = require("../utils/utils");
 // 爬取多少页
 const pageTotal = 30;
 
@@ -31,9 +31,9 @@ async function getPage() {
   } = await axios.get("http://jiuli.xiaoapi.cn/i/img/mnyjs.php");
   // 获取清爽的title
   let realTitle = mainTitle.split("-")[0].replace(/\s/g, '');
-  isExitDir("taotuImg");
-  fs.mkdir("./taotuImg/" + realTitle, () => {
-    console.log("成功创建目录：" + "./taotuImg/" + realTitle);
+  isExitDir("imgTaotu");
+  fs.mkdir("./imgTaotu/" + realTitle, () => {
+    console.log("成功创建目录：" + "./imgTaotu/" + realTitle);
   });
   getImg(imgUrls, realTitle);
 }
@@ -50,7 +50,7 @@ async function getImg(imgUrls, mainTitle) {
 // 拿到链接之后通过文件流下载
 async function download(imgUrl, mainTitle, title) {
   const res = await axios.get(imgUrl, { responseType: "stream" });
-  const ws = fs.createWriteStream(`./taotuImg/${mainTitle}/${title}.jpg`);
+  const ws = fs.createWriteStream(`./imgTaotu/${mainTitle}/${title}.jpg`);
   res.data.pipe(ws);
   console.log("正在下载" + title);
   res.data.on("close", async () => {

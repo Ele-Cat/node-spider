@@ -6,7 +6,7 @@ const {
   sleep,
   excludeSpecial,
   getDomain,
-} = require("./utils/utils");
+} = require("../utils/utils");
 // 爬取多少页
 const pageTotal = 30;
 
@@ -41,9 +41,9 @@ async function getPage(num, waitTime) {
     const mainTitle = await excludeSpecial($(element).find(".imgTitle").text());
     let imgUrl = $(element).find(".img").attr("href");
     imgUrl = httpUrl + imgUrl;
-    isExitDir("coupleImg");
-    fs.mkdir("./coupleImg/" + mainTitle, () => {
-      console.log("成功创建目录：" + "./coupleImg/" + mainTitle);
+    isExitDir("imgCouple");
+    fs.mkdir("./imgCouple/" + mainTitle, () => {
+      console.log("成功创建目录：" + "./imgCouple/" + mainTitle);
     });
     getImg(imgUrl, mainTitle);
   });
@@ -65,7 +65,7 @@ async function getImg(imgUrl, mainTitle) {
 // 拿到链接之后通过文件流下载
 async function download(pageImgUrl, mainTitle, title) {
   const res = await axios.get(pageImgUrl, { responseType: "stream" });
-  const ws = fs.createWriteStream(`./coupleImg/${mainTitle}/${title}.jpg`);
+  const ws = fs.createWriteStream(`./imgCouple/${mainTitle}/${title}.jpg`);
   res.data.pipe(ws);
   console.log("正在下载" + title);
   res.data.on("close", async () => {
