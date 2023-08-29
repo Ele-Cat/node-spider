@@ -20,14 +20,14 @@ npm i
 
 1. 获取情头运行【程序运行会在根目录生成`coupleImg`文件夹，图片会保存在这里】
 
-```sh
-node couple.js
-```
+   ```sh
+   node couple.js
+   ```
 
 ### 接口爬取
 
 1. 获取美女套图运行【程序运行会在根目录生成`taotuImg`文件夹，图片会保存在这里】
 
-```sh
-node taotu.js
-```
+   ```sh
+   node taotu.js
+   ```
