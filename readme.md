@@ -3,6 +3,7 @@
 - 使用 nodejs + axios + cheerio 搭建爬取网页情侣头像、接口套图等的脚本
 - [情侣头像](https://www.woyaogexing.com)
 - [美女套图](http://jiuli.xiaoapi.cn/ipa.php?id=mnyjs)
+- [短视频1](https://api.apiopen.top/api/getMiniVideo?page=1&size=10)
 
 ## 使用前
 
