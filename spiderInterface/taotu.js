@@ -5,7 +5,7 @@ const { isExitDir, sleep } = require("../utils/utils");
 const pageTotal = 30;
 
 /************
- * 爬情侣头像用的脚本
+ * 爬套图用的脚本
  ************/
 
 // 执行入口，传入一个时间(单位:ms)控制爬取速度，建议不要太快
@@ -13,12 +13,12 @@ getList();
 
 /**
  * 获取不同页面的数据，默认获取30页
- * @param waitTime 爬取一个页面的间隔时间，默认 2s
+ * @param waitTime 爬取一个页面的间隔时间，默认 3s
  */
-async function getList(waitTime = 2000) {
+async function getList(waitTime = 3000) {
   for (let i = 2; i < pageTotal; i++) {
     // 爬慢点
-    await sleep(waitTime * i);
+    await sleep(waitTime);
     getPage();
   }
 }
@@ -31,9 +31,9 @@ async function getPage() {
   } = await axios.get("http://jiuli.xiaoapi.cn/i/img/mnyjs.php");
   // 获取清爽的title
   let realTitle = mainTitle.split("-")[0].replace(/\s/g, '');
-  isExitDir("imgTaotu");
-  fs.mkdir("./imgTaotu/" + realTitle, () => {
-    console.log("成功创建目录：" + "./imgTaotu/" + realTitle);
+  isExitDir("imageTaotu");
+  fs.mkdir("./imageTaotu/" + realTitle, () => {
+    console.log("成功创建目录：" + "./imageTaotu/" + realTitle);
   });
   getImg(imgUrls, realTitle);
 }
@@ -50,7 +50,7 @@ async function getImg(imgUrls, mainTitle) {
 // 拿到链接之后通过文件流下载
 async function download(imgUrl, mainTitle, title) {
   const res = await axios.get(imgUrl, { responseType: "stream" });
-  const ws = fs.createWriteStream(`./imgTaotu/${mainTitle}/${title}.jpg`);
+  const ws = fs.createWriteStream(`./imageTaotu/${mainTitle}/${title}.jpg`);
   res.data.pipe(ws);
   console.log("正在下载" + title);
   res.data.on("close", async () => {

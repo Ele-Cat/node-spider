@@ -19,12 +19,12 @@ getList();
 
 /**
  * 获取不同页面的数据，默认获取30页
- * @param waitTime 爬取一个页面的间隔时间，默认 2s
+ * @param waitTime 爬取一个页面的间隔时间，默认 3s
  */
-async function getList(waitTime = 2000) {
-  for (let i = 2; i < pageTotal; i++) {
+async function getList(waitTime = 3000) {
+  for (let i = 1; i < pageTotal; i++) {
     // 爬慢点
-    await sleep(waitTime * i);
+    await sleep(waitTime);
     getPage(i);
   }
 }
@@ -41,9 +41,9 @@ async function getPage(num, waitTime) {
     const mainTitle = await excludeSpecial($(element).find(".imgTitle").text());
     let imgUrl = $(element).find(".img").attr("href");
     imgUrl = httpUrl + imgUrl;
-    isExitDir("imgCouple");
-    fs.mkdir("./imgCouple/" + mainTitle, () => {
-      console.log("成功创建目录：" + "./imgCouple/" + mainTitle);
+    isExitDir("imageCouple");
+    fs.mkdir("./imageCouple/" + mainTitle, () => {
+      console.log("成功创建目录：" + "./imageCouple/" + mainTitle);
     });
     getImg(imgUrl, mainTitle);
   });
@@ -65,7 +65,7 @@ async function getImg(imgUrl, mainTitle) {
 // 拿到链接之后通过文件流下载
 async function download(pageImgUrl, mainTitle, title) {
   const res = await axios.get(pageImgUrl, { responseType: "stream" });
-  const ws = fs.createWriteStream(`./imgCouple/${mainTitle}/${title}.jpg`);
+  const ws = fs.createWriteStream(`./imageCouple/${mainTitle}/${title}.jpg`);
   res.data.pipe(ws);
   console.log("正在下载" + title);
   res.data.on("close", async () => {

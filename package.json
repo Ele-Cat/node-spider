@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "couple": "node ./spider/couple.js",
-    "taotu": "node ./spider/taotu.js",
+    "couple": "node ./spiderWeb/couple.js",
+    "taotu": "node ./spiderInterface/taotu.js",
+    "short": "node ./spiderInterface/short.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
