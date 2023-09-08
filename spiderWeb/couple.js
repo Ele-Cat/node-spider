@@ -22,7 +22,7 @@ getList();
  * @param waitTime 爬取一个页面的间隔时间，默认 3s
  */
 async function getList(waitTime = 3000) {
-  for (let i = 1; i < pageTotal; i++) {
+  for (let i = 2; i < pageTotal; i++) {
     // 爬慢点
     await sleep(waitTime);
     getPage(i);
