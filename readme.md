@@ -44,3 +44,13 @@ npm i
    ```
 
    程序运行会在根目录生成`videoShort`文件夹，图片会保存在这里
+
+### 接口爬取，并生成接口
+
+1. 爬取尾号限行请运行
+
+   ```sh
+   npm run limit
+   ```
+
+   程序运行会启动服务，访问http://localhost:3000/xianxing?name=天津
