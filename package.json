@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "couple": "node ./spiderWeb/couple.js",
-    "taotu": "node ./spiderInterface/taotu.js",
-    "short": "node ./spiderInterface/short.js",
-    "limit": "node ./spiderInformation/limit.js",
+    "couple": "node ./spiderDownload/couple.js",
+    "taotu": "node ./spiderDownload/taotu.js",
+    "short": "node ./spiderDownload/short.js",
+    "limit": "node ./spiderInterface/limit.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
